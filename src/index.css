@@ -9,7 +9,8 @@ html {
   width: 100%;
 }
 
-body {
-  min-height: 100%;
+body,
+#root {
+  height: 100%;
   width: 100%;
 }

@@ -1,7 +1,6 @@
 import { FC } from "react";
+import Scene from "./components/Scene";
 
-const App: FC = () => {
-  return <pre>Hello World!</pre>;
-};
+const App: FC = () => <Scene />;
 
 export default App;

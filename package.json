@@ -14,13 +14,16 @@
     "check": "npm run lint && npm run types"
   },
   "dependencies": {
+    "@react-three/fiber": "^9.1.1",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "three": "^0.175.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.23.0",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
+    "@types/three": "^0.175.0",
     "@vitejs/plugin-react-swc": "^3.8.0",
     "eslint": "^9.23.0",
     "eslint-config-prettier": "^10.1.1",
