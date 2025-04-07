@@ -1,13 +1,14 @@
 import { FC } from "react";
+import { items } from "../constants/items";
 import { sizes } from "../constants/sizes";
-import PlatinumCard from "./platinum-card";
+import Card from "./card";
 
 const Display: FC = () => {
   return (
     <mesh castShadow>
       <boxGeometry args={sizes.display} />
       <meshStandardMaterial />
-      <PlatinumCard />
+      <Card item={items[0]} />
     </mesh>
   );
 };
