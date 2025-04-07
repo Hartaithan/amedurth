@@ -1,3 +1,3 @@
 export const sizes = {
-  display: [10, 20, 10] as [number, number, number],
+  display: [10, 15, 10] as [number, number, number],
 };
