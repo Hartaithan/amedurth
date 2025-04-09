@@ -1,7 +1,6 @@
-import { Center } from "@react-three/drei";
 import { FC } from "react";
-import { items } from "../constants/items";
 import { sizes } from "../constants/sizes";
+import { Item as IItem } from "../models/item";
 import Card from "./card";
 
 const Item: FC = () => {
@@ -13,24 +12,33 @@ const Item: FC = () => {
   );
 };
 
-const Display: FC = () => {
+interface DisplayProps {
+  item: IItem;
+}
+
+const Display: FC<DisplayProps> = (props) => {
+  const { item } = props;
   return (
     <mesh castShadow>
       <boxGeometry args={sizes.display} />
       <meshStandardMaterial />
-      <Card item={items[0]} />
+      <Card item={item} />
     </mesh>
   );
 };
 
-const DisplayCase: FC = () => {
+interface DisplayCaseProps {
+  item: IItem;
+  position: [number, number, number];
+}
+
+const DisplayCase: FC<DisplayCaseProps> = (props) => {
+  const { item, position } = props;
   return (
-    <Center>
-      <group>
-        <Item />
-        <Display />
-      </group>
-    </Center>
+    <group position={position}>
+      <Item />
+      <Display item={item} />
+    </group>
   );
 };
 
