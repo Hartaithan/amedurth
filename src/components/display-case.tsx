@@ -5,7 +5,7 @@ import Card from "./card";
 
 const Item: FC = () => {
   return (
-    <mesh position={[0, 12, 0]}>
+    <mesh position={[0, 12, 0]} castShadow>
       <torusKnotGeometry args={[2.5, 0.8, 128, 8]} />
       <meshStandardMaterial metalness={0.1} roughness={0.2} />
     </mesh>
