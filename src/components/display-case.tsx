@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { sizes } from "../constants/sizes";
 import { Item as IItem } from "../models/item";
+import { useCamera } from "../providers/camera";
 import Card from "./card";
 
 const Item: FC = () => {
@@ -34,11 +35,15 @@ interface DisplayCaseProps {
 
 const DisplayCase: FC<DisplayCaseProps> = (props) => {
   const { item, position } = props;
+  const { moveTo, setMeshRef } = useCamera();
   return (
-    <group position={position}>
+    <mesh
+      ref={(ref) => setMeshRef(ref, item.id)}
+      position={position}
+      onClick={() => moveTo(item.id)}>
       <Item />
       <Display item={item} />
-    </group>
+    </mesh>
   );
 };
 
