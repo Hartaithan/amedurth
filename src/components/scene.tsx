@@ -12,11 +12,11 @@ const Scene: FC = () => {
   return (
     <Canvas shadows camera={{ position: [0, 0, 30] }}>
       <Center top>
-        {items.map((item) => (
+        {items.map((item, index) => (
           <DisplayCase
             key={item.id}
-            item={item}
-            position={getPosition(item.id, items.length)}
+            index={index}
+            position={getPosition(index, items.length)}
           />
         ))}
       </Center>

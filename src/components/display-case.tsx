@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { items } from "../constants/items";
 import { sizes } from "../constants/sizes";
 import { Item as IItem } from "../models/item";
 import { useCamera } from "../providers/camera";
@@ -29,12 +30,13 @@ const Display: FC<DisplayProps> = (props) => {
 };
 
 interface DisplayCaseProps {
-  item: IItem;
+  index: number;
   position: [number, number, number];
 }
 
 const DisplayCase: FC<DisplayCaseProps> = (props) => {
-  const { item, position } = props;
+  const { index, position } = props;
+  const item = items[index];
   const { moveTo, setMeshRef } = useCamera();
   return (
     <mesh
