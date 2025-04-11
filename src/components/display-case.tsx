@@ -42,7 +42,7 @@ const DisplayCase: FC<DisplayCaseProps> = (props) => {
     <mesh
       ref={(ref) => setMeshRef(ref, item.id)}
       position={position}
-      onClick={() => moveTo(item.id)}>
+      onClick={() => moveTo(index)}>
       <Item />
       <Display item={item} />
     </mesh>
