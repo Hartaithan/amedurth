@@ -1,6 +1,7 @@
 import { CameraControls, Center, Environment } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { FC } from "react";
+import { mouseButtons, touches } from "../constants/camera-actions";
 import { items } from "../constants/items";
 import { useCamera } from "../providers/camera";
 import { getPosition } from "../utils/position";
@@ -22,7 +23,13 @@ const Scene: FC = () => {
       </Center>
       <Ground />
       <Environment preset="sunset" background blur={1} />
-      <CameraControls ref={setCameraRef} makeDefault minDistance={0} />
+      <CameraControls
+        ref={setCameraRef}
+        makeDefault
+        minDistance={0}
+        mouseButtons={mouseButtons}
+        touches={touches}
+      />
     </Canvas>
   );
 };
