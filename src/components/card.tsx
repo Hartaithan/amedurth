@@ -1,5 +1,5 @@
 import { Html } from "@react-three/drei";
-import { FC } from "react";
+import { FC, memo } from "react";
 import { sizes } from "../constants/sizes";
 import { Item } from "../models/item";
 
@@ -26,4 +26,4 @@ const Card: FC<Props> = (props) => {
   );
 };
 
-export default Card;
+export default memo(Card);

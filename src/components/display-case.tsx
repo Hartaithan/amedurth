@@ -1,4 +1,4 @@
-import { Center, Instance, Instances } from "@react-three/drei";
+import { Center, createInstances } from "@react-three/drei";
 import { FC, useCallback, useRef } from "react";
 import { items } from "../constants/items";
 import { sizes } from "../constants/sizes";
@@ -7,14 +7,8 @@ import { useCamera } from "../providers/camera";
 import { getPosition } from "../utils/position";
 import Card from "./card";
 
-const Item: FC = () => {
-  return (
-    <mesh position={[0, 12, 0]} castShadow>
-      <torusKnotGeometry args={[2.5, 0.8, 128, 8]} />
-      <meshStandardMaterial metalness={0.1} roughness={0.2} />
-    </mesh>
-  );
-};
+const [ItemInstances, Item] = createInstances();
+const [DisplayInstances, Display] = createInstances();
 
 interface DisplayCaseProps {
   index: number;
@@ -28,7 +22,7 @@ const DisplayCase: FC<DisplayCaseProps> = (props) => {
   const instanceRef = useRef<DisplayCaseMesh | null>(null);
 
   const setRef = useCallback(
-    (ref: DisplayCaseMesh) => {
+    (ref: DisplayCaseMesh | null) => {
       instanceRef.current = ref;
       setMeshRef(ref, item.id);
     },
@@ -36,26 +30,30 @@ const DisplayCase: FC<DisplayCaseProps> = (props) => {
   );
 
   return (
-    <Instance ref={setRef} position={position} onClick={() => moveTo(index)}>
-      <Item />
+    <Display ref={setRef} position={position} onClick={() => moveTo(index)}>
+      <Item position={[0, 12, 0]} />
       <Card item={item} />
-    </Instance>
+    </Display>
   );
 };
 
 const DisplayCases: FC = () => (
   <Center top>
-    <Instances limit={items.length}>
+    <DisplayInstances limit={items.length}>
       <boxGeometry args={sizes.display} />
       <meshStandardMaterial />
-      {items.map((item, index) => (
-        <DisplayCase
-          key={item.id}
-          index={index}
-          position={getPosition(index, items.length)}
-        />
-      ))}
-    </Instances>
+      <ItemInstances>
+        <torusKnotGeometry args={[2.5, 0.8, 128, 8]} />
+        <meshStandardMaterial metalness={0.1} roughness={0.2} />
+        {items.map((item, index) => (
+          <DisplayCase
+            key={item.id}
+            index={index}
+            position={getPosition(index, items.length)}
+          />
+        ))}
+      </ItemInstances>
+    </DisplayInstances>
   </Center>
 );
 

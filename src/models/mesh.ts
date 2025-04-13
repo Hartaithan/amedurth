@@ -1,3 +1,3 @@
-import { Object3D, Object3DEventMap } from "three";
+import { PositionMesh } from "@react-three/drei";
 
-export type DisplayCaseMesh = Object3D<Object3DEventMap>;
+export type DisplayCaseMesh = PositionMesh;
