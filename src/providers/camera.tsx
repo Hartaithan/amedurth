@@ -10,14 +10,14 @@ import {
   useRef,
   useState,
 } from "react";
-import { Object3D, Object3DEventMap } from "three";
 import { items } from "../constants/items";
+import { DisplayCaseMesh } from "../models/mesh";
 
 interface Context {
   index: number | null;
   cameraRef: RefObject<CameraControls | null>;
   setCameraRef: (ref: CameraControls) => void;
-  setMeshRef: (ref: Object3D<Object3DEventMap> | null, id: number) => void;
+  setMeshRef: (ref: DisplayCaseMesh | null, id: number) => void;
   move: (dir: "prev" | "next") => void;
   moveTo: (index: number) => void;
   reset: () => void;
@@ -38,7 +38,7 @@ const Context = createContext<Context>(initialValue);
 const CameraProvider: FC<PropsWithChildren> = (props) => {
   const { children } = props;
   const [index, setIndex] = useState<Context["index"]>(null);
-  const meshRefs = useRef<Record<number, Object3D<Object3DEventMap>>>({});
+  const meshRefs = useRef<Record<number, DisplayCaseMesh>>({});
   const cameraRef = useRef<CameraControls | null>(null);
 
   const moveTo: Context["moveTo"] = useCallback((index) => {
