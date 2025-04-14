@@ -1,5 +1,5 @@
 import { Center, createInstances } from "@react-three/drei";
-import { FC, useCallback, useRef } from "react";
+import { FC, useCallback } from "react";
 import { items } from "../constants/items";
 import { sizes } from "../constants/sizes";
 import { DisplayCaseMesh } from "../models/mesh";
@@ -19,13 +19,9 @@ const DisplayCase: FC<DisplayCaseProps> = (props) => {
   const { index, position } = props;
   const item = items[index];
   const { moveTo, setMeshRef } = useCamera();
-  const instanceRef = useRef<DisplayCaseMesh | null>(null);
 
   const setRef = useCallback(
-    (ref: DisplayCaseMesh | null) => {
-      instanceRef.current = ref;
-      setMeshRef(ref, item.id);
-    },
+    (ref: DisplayCaseMesh | null) => setMeshRef(ref, item.id),
     [item.id, setMeshRef],
   );
 
@@ -39,10 +35,10 @@ const DisplayCase: FC<DisplayCaseProps> = (props) => {
 
 const DisplayCases: FC = () => (
   <Center top>
-    <DisplayInstances limit={items.length}>
+    <DisplayInstances limit={items.length} frustumCulled>
       <boxGeometry args={sizes.display} />
       <meshStandardMaterial />
-      <ItemInstances>
+      <ItemInstances frustumCulled>
         <torusKnotGeometry args={[2.5, 0.8, 128, 8]} />
         <meshStandardMaterial metalness={0.1} roughness={0.2} />
         {items.map((item, index) => (
