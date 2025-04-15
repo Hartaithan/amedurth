@@ -10,4 +10,4 @@ const generateItems = (count: number): Item[] => {
   }));
 };
 
-export const items: Item[] = generateItems(10);
+export const items: Item[] = generateItems(100);
