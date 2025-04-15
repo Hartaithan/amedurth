@@ -1,14 +1,31 @@
 import { Html } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
 import { FC, memo } from "react";
+import { items } from "../constants/items";
 import { sizes } from "../constants/sizes";
-import { Item } from "../models/item";
+import { useThrottledState } from "../hooks/use-throttled-state";
+import { useCamera } from "../providers/camera";
 
 interface Props {
-  item: Item;
+  index: number;
 }
 
 const Card: FC<Props> = (props) => {
-  const { item } = props;
+  const { index } = props;
+  const item = items[index];
+  const { getMesh } = useCamera();
+  const [isVisible, setVisible] = useThrottledState(false, 1000);
+
+  useFrame(({ camera }) => {
+    const mesh = getMesh(index);
+    const item = mesh?.children?.length > 0 ? mesh.children[0] : null;
+    if (!camera?.position || !item?.position) return;
+    const distance = camera.position.distanceTo(item.position);
+    setVisible(distance < 50);
+  });
+
+  if (!isVisible) return null;
+
   return (
     <Html
       className="pointer-events-none flex justify-between gap-5 rounded bg-white/75 px-3 py-2 select-none"

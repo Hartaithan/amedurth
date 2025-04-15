@@ -18,6 +18,7 @@ interface Context {
   cameraRef: RefObject<CameraControls | null>;
   setCameraRef: (ref: CameraControls) => void;
   setMeshRef: (ref: DisplayCaseMesh | null, id: number) => void;
+  getMesh: (index: number) => DisplayCaseMesh;
   move: (dir: "prev" | "next") => void;
   moveTo: (index: number) => void;
   reset: () => void;
@@ -28,6 +29,7 @@ const initialValue: Context = {
   cameraRef: { current: null },
   setCameraRef: () => null,
   setMeshRef: () => null,
+  getMesh: () => null as unknown as DisplayCaseMesh,
   move: () => null,
   moveTo: () => null,
   reset: () => null,
@@ -84,17 +86,22 @@ const CameraProvider: FC<PropsWithChildren> = (props) => {
     meshRefs.current[id] = ref;
   }, []);
 
+  const getMesh: Context["getMesh"] = useCallback((index) => {
+    return meshRefs.current[index];
+  }, []);
+
   const exposed = useMemo(() => {
     return {
       index,
       cameraRef,
       setCameraRef,
       setMeshRef,
+      getMesh,
       move,
       moveTo,
       reset,
     } satisfies Context;
-  }, [index, move, moveTo, reset, setCameraRef, setMeshRef]);
+  }, [index, move, moveTo, reset, setCameraRef, setMeshRef, getMesh]);
 
   return <Context.Provider value={exposed}>{children}</Context.Provider>;
 };

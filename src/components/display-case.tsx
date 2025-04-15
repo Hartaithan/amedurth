@@ -26,10 +26,12 @@ const DisplayCase: FC<DisplayCaseProps> = (props) => {
   );
 
   return (
-    <Display ref={setRef} position={position} onClick={() => moveTo(index)}>
-      <Item position={[0, 12, 0]} />
-      <Card item={item} />
-    </Display>
+    <group ref={setRef}>
+      <Display position={position} onClick={() => moveTo(index)}>
+        <Item position={[0, 12, 0]} />
+        <Card index={index} />
+      </Display>
+    </group>
   );
 };
 
