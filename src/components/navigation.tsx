@@ -9,25 +9,28 @@ const styles = {
 
 const Navigation: FC = () => {
   const { index, move, reset } = useCamera();
-  if (index === null) return null;
   return (
     <>
       <ItemsDropdown className={styles.button} />
-      <button
-        className={cn(styles.button, "top-4 right-4")}
-        onClick={() => reset()}>
-        ✕
-      </button>
-      <button
-        className={cn(styles.button, "bottom-4 left-4")}
-        onClick={() => move("prev")}>
-        ←
-      </button>
-      <button
-        className={cn(styles.button, "right-4 bottom-4")}
-        onClick={() => move("next")}>
-        →
-      </button>
+      {index && (
+        <>
+          <button
+            className={cn(styles.button, "top-4 right-4")}
+            onClick={() => reset()}>
+            ✕
+          </button>
+          <button
+            className={cn(styles.button, "bottom-4 left-4")}
+            onClick={() => move("prev")}>
+            ←
+          </button>
+          <button
+            className={cn(styles.button, "right-4 bottom-4")}
+            onClick={() => move("next")}>
+            →
+          </button>
+        </>
+      )}
     </>
   );
 };
