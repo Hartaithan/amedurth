@@ -6,10 +6,23 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "npx eslint",
+    "lint:fix": "npx eslint --fix --config eslint.config.ts",
+    "format": "npx prettier . --write",
+    "types": "tsc --noemit",
+    "check": "npm run lint && npm run types"
   },
   "devDependencies": {
+    "@eslint/js": "^9.32.0",
+    "eslint": "^9.32.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^16.3.0",
+    "jiti": "^2.5.1",
+    "prettier": "3.6.2",
+    "prettier-plugin-organize-imports": "^4.2.0",
     "typescript": "~5.8.3",
+    "typescript-eslint": "^8.38.0",
     "vite": "^7.0.4"
   }
 }
