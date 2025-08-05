@@ -11,6 +11,8 @@ export default defineConfig([
     extends: ["js/recommended"],
     languageOptions: { globals: globals.browser },
   },
+  // TODO: update this after fix https://github.com/eslint/eslint/issues/19570
+  // @ts-expect-error eslint-disable-next-line @typescript-eslint/ban-ts-comment
   tseslint.configs.recommended,
   prettier,
 ]);
