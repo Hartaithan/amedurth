@@ -22,13 +22,16 @@ export class Animation {
     Animation.handleResizeEvent();
   }
 
-  public static start() {
-    const renderer = Renderer.get();
+  private static animate() {
     const scene = Scene.get();
     const camera = Camera.get();
-
-    requestAnimationFrame(Animation.start);
+    const renderer = Renderer.get();
 
     renderer.render(scene, camera);
+  }
+
+  public static start() {
+    const renderer = Renderer.get();
+    renderer.setAnimationLoop(this.animate);
   }
 }
