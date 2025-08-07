@@ -8,6 +8,7 @@ import { sizes } from "./constants/sizes";
 import { Scene } from "./scene";
 
 const materialOptions: MeshStandardMaterialParameters = {
+  color: "#8d8d8d",
   metalness: 0.1,
   roughness: 0.2,
 };

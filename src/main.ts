@@ -2,6 +2,7 @@ import { Animation } from "./animation";
 import { Camera } from "./camera";
 import { Container } from "./container";
 import { DisplayCase } from "./display-case";
+import { Light } from "./light";
 import { Renderer } from "./renderer";
 import { Scene } from "./scene";
 import "./style.css";
@@ -13,6 +14,7 @@ const init = () => {
     Camera.create();
     Renderer.create();
     Container.setup();
+    Light.create();
     DisplayCase.create();
     Animation.listenOnResize();
     Animation.start();
