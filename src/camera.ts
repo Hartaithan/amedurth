@@ -7,7 +7,7 @@ export class Camera {
 
   public static create() {
     const aspect = window.innerWidth / window.innerHeight;
-    const camera = new PerspectiveCamera(50, aspect, 1, 10);
+    const camera = new PerspectiveCamera(50, aspect);
     camera.position.z = 6;
     Camera.camera = camera;
     return Camera.camera;

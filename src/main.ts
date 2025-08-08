@@ -3,6 +3,7 @@ import { Camera } from "./camera";
 import { Container } from "./container";
 import { Controls } from "./controls";
 import { DisplayCase } from "./display-case";
+import { Ground } from "./ground";
 import { Light } from "./light";
 import { Renderer } from "./renderer";
 import { Scene } from "./scene";
@@ -12,6 +13,7 @@ const init = () => {
   try {
     Container.create();
     Scene.create();
+    Ground.create();
     Camera.create();
     Renderer.create();
     Controls.create();

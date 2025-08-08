@@ -7,7 +7,7 @@ export class Scene {
 
   public static create() {
     Scene.scene = new ThreeScene();
-    Scene.scene.background = new Color(0xffffff);
+    Scene.scene.background = new Color(0xa0a0a0);
     Scene.scene.fog = new Fog(0xa0a0a0, 10, 50);
     return Scene.scene;
   }
